@@ -1,0 +1,204 @@
+header: 
+  seq: 0
+  stamp: 
+    secs: 176
+    nsecs: 697000000
+  frame_id: ''
+goal_id: 
+  stamp: 
+    secs: 176
+    nsecs: 697000000
+  id: "/move_group_commander_wrappers_1725475789014943682-1-176.697000000"
+goal: 
+  request: 
+    workspace_parameters: 
+      header: 
+        seq: 0
+        stamp: 
+          secs: 0
+          nsecs:         0
+        frame_id: ''
+      min_corner: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+      max_corner: 
+        x: 0.0
+        y: 0.0
+        z: 0.0
+    start_state: 
+      joint_state: 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 0
+            nsecs:         0
+          frame_id: ''
+        name: []
+        position: []
+        velocity: []
+        effort: []
+      multi_dof_joint_state: 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 0
+            nsecs:         0
+          frame_id: ''
+        joint_names: []
+        transforms: []
+        twist: []
+        wrench: []
+      attached_collision_objects: []
+      is_diff: True
+    goal_constraints: 
+      - 
+        name: ''
+        joint_constraints: []
+        position_constraints: 
+          - 
+            header: 
+              seq: 0
+              stamp: 
+                secs: 0
+                nsecs:         0
+              frame_id: "world"
+            link_name: "link_3"
+            target_point_offset: 
+              x: 0.0
+              y: 0.0
+              z: 0.0
+            constraint_region: 
+              primitives: 
+                - 
+                  type: 2
+                  dimensions: [0.0001]
+              primitive_poses: 
+                - 
+                  position: 
+                    x: 0.02
+                    y: 0.16
+                    z: 0.61
+                  orientation: 
+                    x: 0.0
+                    y: 0.0
+                    z: 0.0
+                    w: 1.0
+              meshes: []
+              mesh_poses: []
+            weight: 1.0
+        orientation_constraints: 
+          - 
+            header: 
+              seq: 0
+              stamp: 
+                secs: 0
+                nsecs:         0
+              frame_id: "world"
+            orientation: 
+              x: 0.0
+              y: 0.0
+              z: 0.0
+              w: 1.0
+            link_name: "link_3"
+            absolute_x_axis_tolerance: 0.001
+            absolute_y_axis_tolerance: 0.001
+            absolute_z_axis_tolerance: 0.001
+            parameterization: 0
+            weight: 1.0
+        visibility_constraints: []
+    path_constraints: 
+      name: ''
+      joint_constraints: []
+      position_constraints: []
+      orientation_constraints: []
+      visibility_constraints: []
+    trajectory_constraints: 
+      constraints: []
+    reference_trajectories: []
+    pipeline_id: ''
+    planner_id: ''
+    group_name: "plan"
+    num_planning_attempts: 1
+    allowed_planning_time: 5.0
+    max_velocity_scaling_factor: 0.1
+    max_acceleration_scaling_factor: 0.1
+    cartesian_speed_limited_link: ''
+    max_cartesian_speed: 0.0
+  planning_options: 
+    planning_scene_diff: 
+      name: ''
+      robot_state: 
+        joint_state: 
+          header: 
+            seq: 0
+            stamp: 
+              secs: 0
+              nsecs:         0
+            frame_id: ''
+          name: []
+          position: []
+          velocity: []
+          effort: []
+        multi_dof_joint_state: 
+          header: 
+            seq: 0
+            stamp: 
+              secs: 0
+              nsecs:         0
+            frame_id: ''
+          joint_names: []
+          transforms: []
+          twist: []
+          wrench: []
+        attached_collision_objects: []
+        is_diff: True
+      robot_model_name: ''
+      fixed_frame_transforms: []
+      allowed_collision_matrix: 
+        entry_names: []
+        entry_values: []
+        default_entry_names: []
+        default_entry_values: []
+      link_padding: []
+      link_scale: []
+      object_colors: []
+      world: 
+        collision_objects: []
+        octomap: 
+          header: 
+            seq: 0
+            stamp: 
+              secs: 0
+              nsecs:         0
+            frame_id: ''
+          origin: 
+            position: 
+              x: 0.0
+              y: 0.0
+              z: 0.0
+            orientation: 
+              x: 0.0
+              y: 0.0
+              z: 0.0
+              w: 0.0
+          octomap: 
+            header: 
+              seq: 0
+              stamp: 
+                secs: 0
+                nsecs:         0
+              frame_id: ''
+            binary: False
+            id: ''
+            resolution: 0.0
+            data: []
+      is_diff: True
+    plan_only: True
+    look_around: False
+    look_around_attempts: 0
+    max_safe_execution_cost: 0.0
+    replan: False
+    replan_attempts: 0
+    replan_delay: 0.0
+---
