@@ -4,6 +4,16 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="fanuc" xmlns:xacro="http://ros.org/wiki/xacro">
+<!-- changes add -->
+  <link name="dummy_root"/>
+
+  <!-- Fixed joint between dummy_root and base_link -->
+  <joint name="dummy_to_base" type="fixed">
+    <parent link="dummy_root"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+  </joint>
+<!-- changes -->
   <link name="base_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -20,6 +30,11 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/base_link.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="10.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+    </inertial>
   </link>
   <link name="link_1">
     <visual>
@@ -37,6 +52,11 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/link_1.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
   </link>
   <link name="link_2">
     <visual>
@@ -54,6 +74,11 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/link_2.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
   </link>
   <link name="link_3">
     <visual>
@@ -71,6 +96,11 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/link_3.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
   </link>
   <link name="link_4">
     <visual>
@@ -88,6 +118,11 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/link_4.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
   </link>
   <link name="link_5">
     <visual>
@@ -105,6 +140,11 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/link_5.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+    </inertial>
   </link>
   <link name="link_6">
     <visual>
@@ -122,8 +162,18 @@
         <mesh filename="package://moveit_resources_fanuc_description/meshes/collision/link_6.stl"/>
       </geometry>
     </collision>
+    <inertial>
+      <mass value="3.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+    </inertial>
   </link>
   <link name="tool0"/>
+    <inertial>
+      <mass value="3.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
+    </inertial>
   <joint name="joint_1" type="revolute">
     <origin rpy="0 0 0" xyz="0 0 0.450"/>
     <parent link="base_link"/>
@@ -177,4 +227,79 @@
     <parent link="base_link"/>
     <child link="base"/>
   </joint>
+  <!-- <transmission name="trans_joint_0">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="joint_0">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="joint_0_motor">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission> -->
+  <transmission name="link_1_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_1">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="joint_1_motor">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+  <transmission name="link_2_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_2">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="joint_2_motor">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+  <transmission name="link_3_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_3">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="joint_3_motor">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+  <transmission name="link_4_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_4">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="joint_4_motor">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+  <transmission name="link_5_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_5">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="joint_5_motor">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+  <transmission name="link_6_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_6">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="joint_6_motor">
+          <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
 </robot>

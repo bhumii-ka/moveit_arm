@@ -1,0 +1,39 @@
+<launch>
+	<arg name="arg_x" default="0.00" />
+	<arg name="arg_y" default="0.00" />
+	<arg name="arg_z" default="0.01" />
+	<arg name="arg_R" default="0.00" />
+	<arg name="arg_P" default="0.00" />
+	<arg name="arg_Y" default="0.00" />
+
+	<!--Urdf file path-->
+	<param name="robot_description" textfile="$(find moveit_resources_panda_description)/urdf/model.urdf"/>
+
+	<!--spawn a empty gazebo world-->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch" />
+	<node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" />
+
+	<!--spawn model-->
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-x $(arg arg_x) -y $(arg arg_y) -z $(arg arg_z) -Y $(arg arg_Y) -param robot_description -urdf -model model"/>
+
+	<!--Load and launch the joint trajectory controller-->
+	<!-- <rosparam file ="$(find moveit_pkg)/config/joint_trajectory_controller.yaml" command="load"/> -->
+	<!-- <node name= "controller_spawner" pkg= "controller_manager" type="spawner" respawn="false" output="screen" args="end_effector_controller plan_controller joint_state_controller"/> -->
+	<!-- Robot State Publisher for TF of each joint: publishes all the current states of the joint, then RViz can visualize -->
+	
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+	<!-- Launch Moveit Move Group Node -->
+	<include file = "$(find moveit_resources_panda_moveit_config)/launch/move_group.launch" />
+
+	<!-- Run Rviz and load the default configuration to see the state of the move_group node -->
+	<arg name="use_rviz" default="true" />
+
+	<include file="$(find moveit_resources_panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg use_rviz)">
+		<arg name="rviz_config" value="$(find moveit_resources_panda_moveit_config)/launch/moveit.rviz"/>
+	</include>
+	 
+	<!-- Start controller manager -->
+  <node name="controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" />
+
+</launch>

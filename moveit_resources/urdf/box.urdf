@@ -1,0 +1,41 @@
+<launch>
+  <!-- Start Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+  </include>
+
+  <!-- Spawn a box in Gazebo -->
+  <node name="spawn_box" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -model my_box -x 0 -y 0 -z 1 -param box_description"/>
+
+  <!-- Define the box model using SDF -->
+  <param name="box_description" command="echo '
+  <sdf version="1.6">
+    <model name="my_box">
+      <static>false</static>
+      <link name="link">
+        <pose>0 0 0.5 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0 0 1</ambient>
+            <diffuse>0.7 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </sdf>'"/>
+</launch>

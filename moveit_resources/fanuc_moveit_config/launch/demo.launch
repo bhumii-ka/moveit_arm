@@ -1,4 +1,16 @@
 <launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  </include>
+  <param name="use_gui" value="true"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find moveit_resources_fanuc_description)/urdf/fanuc.urdf" />
+
+  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/> -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -model fanuc -param robot_description -x 0 -y 0 -z 1" />
+	<!-- <include file = "$(find moveit_resources_panda_moveit_config)/launch/move_group.launch" /> -->
+  <node name="controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" />
+
+  	<node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" />
+  <!-- I added above lines -->
 
   <!-- specify the planning pipeline -->
   <arg name="pipeline" default="ompl" />
